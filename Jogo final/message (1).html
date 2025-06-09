@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jogo de Luta Unificado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css.css" />
+</head>
+<body>
+<main>
+  <!-- Tela Inicial -->
+  <section id="tela-inicial" class="tela active" tabindex="0" aria-label="Tela inicial do jogo - bem-vindo">
+    <h1>Bem-vindo, Lutador</h1>
+    <div class="main-btns">
+      <button id="btn-iniciar" class="btn-retro">Iniciar</button>
+      <button id="btn-opcoes" class="btn-retro">Opções</button>
+      <button id="btn-sair" class="btn-retro">Sair</button>
+    </div>
+  </section>
+
+  <!-- Tela Modos -->
+  <section id="tela-modos" class="tela" aria-label="Escolha do modo de jogo">
+    <h2>Escolha o seu adversário</h2>
+    <div class="main-btns">
+      <button id="btn-modo-pvp" class="btn-retro">Jogador VS Jogador</button>
+      <button id="btn-modo-pvc" class="btn-retro">Jogador VS CPU</button>
+      <button id="btn-treino" class="btn-retro">Modo Treino</button>
+    </div>
+  </section>
+
+  <!-- Tela Seleção Personagem -->
+  <section id="tela-selecao" class="tela" aria-label="Seleção de personagens para os jogadores">
+    <div class="selecao-personagens">
+      <div class="selecao-player" aria-label="Seleção do Jogador 1">
+        <div class="personagem-card">
+          <div class="personagem-icone" id="icon-jogador1"></div>
+          <div class="personagem-info" id="display-jogador1" aria-live="polite"></div>
+        </div>
+        <div class="classe-personagem">
+          <label for="classe-select-1">Classe:</label>
+          <select id="classe-select-1"></select>
+        </div>
+        <div class="selecao-controls">
+          <button id="btn-prev-1" class="btn-mini" aria-label="Personagem anterior Jogador 1">&#9664;</button>
+          <button id="btn-next-1" class="btn-mini" aria-label="Próximo personagem Jogador 1">&#9654;</button>
+        </div>
+        <button id="btn-selecionar-1" class="btn-retro botao-selecionar" aria-label="Selecionar personagem Jogador 1">Selecionar</button>
+      </div>
+      <div class="selecao-player" id="container-jogador2" aria-label="Seleção do Jogador 2">
+        <h3 id="titulo-jogador2">Jogador 2</h3>
+        <div class="personagem-card">
+          <div class="personagem-icone" id="icon-jogador2"></div>
+          <div class="personagem-info" id="display-jogador2" aria-live="polite"></div>
+        </div>
+        <div class="classe-personagem">
+          <label for="classe-select-2">Classe:</label>
+          <select id="classe-select-2"></select>
+        </div>
+        <div class="selecao-controls">
+          <button id="btn-prev-2" class="btn-mini" aria-label="Personagem anterior Jogador 2">&#9664;</button>
+          <button id="btn-next-2" class="btn-mini" aria-label="Próximo personagem Jogador 2">&#9654;</button>
+        </div>
+        <button id="btn-selecionar-2" class="btn-retro botao-selecionar" aria-label="Selecionar personagem Jogador 2">Selecionar</button>
+        <button id="btn-selecionar-cpu" class="btn-retro botao-selecionar" aria-label="Selecionar CPU Aleatório" style="margin-top:12px;">Selecionar CPU Aleatório</button>
+      </div>
+    </div>
+    <button id="btn-iniciar-jogo" class="btn-retro botao-selecionar" style="display:none;margin-top:18px;" aria-label="Iniciar Batalha">Iniciar Batalha</button>
+  </section>
+
+  <!-- Tela Arena -->
+  <section id="tela-arena" class="tela" aria-label="Arena de Batalha" tabindex="0">
+    <div class="layout-arena">
+      <div class="hud-lateral">
+        <div class="painel-controles">
+          <h4>Controles Jogador 1</h4>
+          <ul>
+            <li><b>W/A/S/D</b>: Mover</li>
+            <li><b>F</b>: Ataque 1</li>
+            <li><b>G</b>: Ataque 2</li>
+            <li><b>H</b>: Ataque Especial</li>
+            <li><b>E</b>: Defender</li>
+            <li><b>R</b>: Carregar Estamina</li>
+            <li><b>Q</b>: Dash/Esquiva</li>
+            <li><b>Espaço</b>: Pular</li>
+          </ul>
+          <br>
+          <div id="painel-controles2"></div>
+        </div>
+      </div>
+      <div class="painel-arena">
+        <h2 id="arena-titulo">Batalha</h2>
+        <div id="arena-cenario" aria-live="off" aria-label="Área da batalha">
+          <div id="player" aria-label="Posição do jogador 1">
+            <div class="barra barra-vida" id="barra-vida-player"></div>
+            <div class="sprite-personagem" id="sprite-player"></div>
+            <div class="barra barra-estamina" id="barra-estamina-player"></div>
+          </div>
+          <div id="cpu" aria-label="Posição do jogador 2 ou CPU">
+            <div class="barra barra-vida" id="barra-vida-cpu"></div>
+            <div class="sprite-personagem" id="sprite-cpu"></div>
+            <div class="barra barra-estamina" id="barra-estamina-cpu"></div>
+          </div>
+        </div>
+        <div id="hud-arena">
+          <div class="hud-nome" id="nome-player"></div>
+          <div class="hud-nome" id="nome-cpu"></div>
+          <div class="hud-barra" id="hud-player">
+            <div class="hud-bar vida-bar"></div>
+            <div class="hud-bar energia-bar"></div>
+            <div class="hud-bar especial-bar"></div>
+          </div>
+          <div class="hud-barra" id="hud-cpu">
+            <div class="hud-bar vida-bar"></div>
+            <div class="hud-bar energia-bar"></div>
+            <div class="hud-bar especial-bar"></div>
+          </div>
+          <div class="hud-timer" id="hud-timer"></div>
+        </div>
+        <div id="instrucoes-arena" aria-live="polite" aria-atomic="true" role="region"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Final -->
+  <div id="modal-final" role="dialog" aria-modal="true" aria-labelledby="resultado-titulo">
+    <h2 id="resultado-titulo"></h2>
+    <div id="pontuacao-final"></div>
+    <div>
+      <button id="btn-tentar" class="btn-retro">Tentar Novamente?</button>
+      <button id="btn-mudar" class="btn-retro">Mudar de Personagem?</button>
+    </div>
+  </div>
+</main>
+
+<audio id="som-golpe" src="sfx/golpe.mp3" preload="auto"></audio>
+<audio id="som-bloqueio" src="sfx/bloqueio.mp3" preload="auto"></audio>
+<audio id="som-especial" src="sfx/especial.mp3" preload="auto"></audio>
+<audio id="som-vitoria" src="sfx/vitoria.mp3" preload="auto"></audio>
+<audio id="som-derrota" src="sfx/derrota.mp3" preload="auto"></audio>
+<script src="123.js"></script>
+</body>
+</html>
